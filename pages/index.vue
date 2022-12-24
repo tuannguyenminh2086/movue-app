@@ -1,0 +1,3 @@
+<template>
+ <OrganismsTrending />
+</template>
