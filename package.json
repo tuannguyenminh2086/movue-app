@@ -9,10 +9,12 @@
   },
   "devDependencies": {
     "@nuxt/image-edge": "^1.0.0-27840416.dc1ed65",
-    "nuxt": "3.0.0"
+    "nuxt": "3.0.0",
+    "nuxt-icon": "^0.1.8"
   },
   "dependencies": {
     "@nuxt/image": "^0.7.1",
-    "@nuxtjs/tailwindcss": "^6.2.0"
+    "@nuxtjs/tailwindcss": "^6.2.0",
+    "dayjs": "^1.11.7"
   }
 }

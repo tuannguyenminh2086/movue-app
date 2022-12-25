@@ -32,7 +32,8 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/image-edge'
+    '@nuxt/image-edge',
+    'nuxt-icon'
   ],
   runtimeConfig: {
     apiToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDBjMjY4ZWFiZmRjMWE2NjUyOGViN2VkMmExOTRhZCIsInN1YiI6IjVhODdmMWM4OTI1MTQxNzU5MzA0Y2RmNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZyNNM_lBCIcUPyxLIdCunCaN8TPdZudssuM1o6lvKrU',

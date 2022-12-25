@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
   const { apiKey, apiUrl } = useRuntimeConfig();
 
   // api call with private key
-  const {results} = await $fetch(`${apiUrl}/trending/movie/week?api_key=${apiKey}`);
+  const {results} = await $fetch(`${apiUrl}/trending/movie/week?api_key=${apiKey}&language=en-US`);
 
   return results;
 })
