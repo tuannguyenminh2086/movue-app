@@ -2,14 +2,15 @@ export default defineEventHandler(async (event) => {
   const {id} = getQuery(event)  
 
   if (!id) {
-    return { movie: 'not-found'}
+    return 'not-found'
   } else {
     const { apiKey, apiUrl } = useRuntimeConfig();
     const data = await $fetch(`${apiUrl}/movie/${id}?api_key=${apiKey}&language=en-US`);
+    
     if (data) {
-      return { movie: data }
+      return data
     } else {
-      return { movie: 'not-found'}
+      return 'not-found'
     }
     
   }

@@ -4,20 +4,21 @@
       Loading ...
     </div>
     <div v-else>
-      <OrganismsMovie :movie="data?.movie" />
+      <OrganismsMovie :movie="data" />
       <!-- related || suggestion-->
     </div>
   </div>
 </template>
+
 
 <script setup lang="ts">
   definePageMeta({
     layout: "movie",
   });
 
-  const {id } = useRoute().params;
-  const { pending, data } = await useLazyFetch('/api/movie/', {  query: { id: id} } )
-  
+  const { id } = useRoute().params;
+  const { pending, data } = await useLazyFetch('/api/movie/', { query: { id: id} , transform: data => data })
+
 </script>
 
 <style scoped>

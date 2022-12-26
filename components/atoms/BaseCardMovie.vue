@@ -26,7 +26,7 @@ const props = defineProps({
 })
 
 const posterUrl = computed(() => 'https://image.tmdb.org/t/p/w500/' + props.poster_path)
-const votePoint = computed(() => Math.round(props.vote_average!).toString() )
+const votePoint = computed(() => (Math.round((props.vote_average! + Number.EPSILON) * 10) / 10).toString() )
 
 const slug = computed(() => props.title.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-') );
 const detailUrl = computed(() => '/m/' + props.id + '/' + slug.value )

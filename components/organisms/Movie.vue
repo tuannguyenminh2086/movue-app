@@ -5,34 +5,56 @@
       <AtomsBaseCoverMovie :backdrop="movie.backdrop_path" />
 
       <div class="grid grid-cols-12 gap-4 relative z-40 ">
-        <div class="col-span-full lg:col-span-4 xl:col-span-7 2xl:col-span-5">
-          <h2 class="text-5xl font-bold text-shadow uppercase w-10/12 xl:text-8xl">{{movie.title}}</h2>
-          <ul class="list-none mt-10 text-slate-200">
-            <li class="mt-5">
-              <span class="font-bold block uppercase text-3xl">{{ dateRelease }}</span>
-              <span class="font-extralight block text-xl">{{ yearRelease }}</span>
-            </li>
-            <li class="mt-5">{{ movie.runtime }}</li>
-          </ul>
+        <div class="col-span-full lg:col-span-4 xl:col-span-7 2xl:col-span-7">
+          <h2 class="text-5xl font-bold text-shadow uppercase w-10/12 xl:text-8xl 2xl:text-9xl">{{movie.title}}</h2>
+          <p class="" v-if="movie.tagline">{{ movie.tagline }}</p>
+          <div class="list-none mt-10 text-slate-200 xl:mt-20">
+            <div class="mt-5">
+              <span class="font-bold block uppercase xl:text-3xl">{{ dateRelease }}</span>
+              <span class="font-extralight block xl:text-xl">{{ yearRelease }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-span-full lg:col-span-5 xl:col-span-3 2xl:col-span-3"></div>
+        <div class="hidden col-span-full lg:block lg:col-span-3 xl:col-span-2">
+          <h3 class="text-xl font-semibold mb-6  uppercase">Starring</h3>
         </div>
       </div>
 
-      <span class="cursor-pointer absolute block bottom-8 left-10 z-40 xl:bottom-10 xl:left-24" @click="scrollTo">
+      <button type="button" class="cursor-pointer absolute block bottom-8 left-5 z-40 lg:left-10 xl:bottom-10 xl:left-24" @click="scrollTo">
         <Icon name="mdi-light:arrow-down-circle" size="4rem" />
-      </span>
+      </button>
+
+      <button type="button" class="transition-colors hidden absolute bottom-8 right-5 z-40 border-2 border-red-500 px-8 py-3 bg-red-500 hover:bg-red-600  lg:flex lg:items-center xl:bottom-10 xl:right-24" @click="scrollTo">
+        <span class="pr-3">Watch Trailers</span> <Icon name="mdi-light:presentation-play" size="2rem" />
+      </button>
+
 
     </div>
 
-    <div id="info" class="relative p-5 py-16 xl:py-32" ref="detailRef">
+    <div id="info" class="relative p-5 py-16 xl:py-32 xl:px-24" ref="detailRef">
       <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-full lg:col-span-3"></div>
-        <div class="col-span-full lg:col-span-6">
-          <h3 class="text-3xl font-bold mb-6 uppercase">STORY</h3>
-          <p class="text-xl font-light leading-relaxed">{{ movie.overview }}</p>
-        </div>
+       
         <div class="col-span-full lg:col-span-3">
-          <h3 class="text-3xl font-bold mb-6  uppercase">Starring</h3>
+          <MoleculesGenres :genres="movie.genres" />
+          <div class="flex items-center"> <Icon name="mdi-light:clock" size="2rem" /> <span class="text-3xl pl-2">{{ movie.runtime }} min</span></div>
         </div>
+
+        <div class="col-span-full lg:col-span-5">
+
+          <div class="mt-0">
+            <h3 class="text-lg font-bold mb-6 uppercase">STORY</h3>
+            <p class="xl:text-2xl font-light leading-relaxed">{{ movie.overview }}</p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="text-lg font-bold mb-6 uppercase">TRAILERS</h3>
+            <MoleculesTrailers :mid="movie.id" />
+          </div>
+          
+        </div>
+        <div class="col-span-full lg:col-span-4"></div>
+        
       </div>
     </div>
 
@@ -77,11 +99,9 @@ interface Props {
 
 const { movie } = defineProps<Props>()
 
-console.log(movie);
-
 const yearRelease = dayjs(movie.release_date).format('YYYY');
 const dateRelease = dayjs(movie.release_date).format('DD MMMM');
-const detailRef = ref(null)
+const detailRef = ref<HTMLDivElement | null>(null)
 
 useHead({
     title: movie.title + ' | Movue',
@@ -91,7 +111,9 @@ useHead({
   })
 
 const scrollTo = () => {
-  detailRef.value.scrollIntoView({ behavior: 'smooth' })
+  if (detailRef.value) {
+    detailRef.value.scrollIntoView({ behavior: 'smooth' })
+  }
 }
 
 </script>
