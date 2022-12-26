@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<Props>(), {
   cls: ''
 })
 
-const state = reactive({ headingCls: 'text-2xl lg:text-3xl' })
+const state = reactive({ headingCls: 'font-medium text-2xl lg:text-3xl ' + props.cls })
 
 
 const BaseHeading = defineComponent({

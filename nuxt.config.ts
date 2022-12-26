@@ -3,7 +3,6 @@ export default defineNuxtConfig({
   app: {
     head: {
       meta: [
-        // <meta name="viewport" content="width=device-width, initial-scale=1">
         { name: 'viewport', content: 'width=device-width, initial-scale=1' }
       ],
       script: [
@@ -24,18 +23,24 @@ export default defineNuxtConfig({
       noscript: [
         // <noscript>Javascript is required</noscript>
         { children: 'Javascript is required' }
-      ]
-    }
+      ],
+      bodyAttrs: {
+        class: 'bg-black text-white font-poppins subpixel-antialiased text-base tracking-wide scroll-smooth' // not apply!!
+      }
+    },
+    pageTransition: { name: 'page', mode: 'out-in' }
   },
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxt/image-edge'
+    '@nuxt/image-edge',
+    'nuxt-icon'
   ],
   runtimeConfig: {
     apiToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDBjMjY4ZWFiZmRjMWE2NjUyOGViN2VkMmExOTRhZCIsInN1YiI6IjVhODdmMWM4OTI1MTQxNzU5MzA0Y2RmNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZyNNM_lBCIcUPyxLIdCunCaN8TPdZudssuM1o6lvKrU',
     apiKey: '800c268eabfdc1a66528eb7ed2a194ad',
-    public: {
-      apiUrl: 'https://api.themoviedb.org/3'
-    }
+    apiUrl: 'https://api.themoviedb.org/3'
+  },
+  image: {
+    domains: ['image.tmdb.org']
   }
 })
