@@ -1,3 +1,5 @@
+import { parse } from 'path/posix';
+
 import { z } from 'zod';
 
 const trailers = z.array(z.object({
@@ -16,8 +18,11 @@ export default defineEventHandler(async (event) => {
     return { movie: 'not-found'}
   } else {
     const { apiKey, apiUrl } = useRuntimeConfig();
-    const data = await $fetch(`${apiUrl}/movie/${id}/videos?api_key=${apiKey}&language=en-US`);
-    return trailers.parse(data.results)
+    const data = await $fetch(`${apiUrl}/movie/${id}/credits?api_key=${apiKey}&language=en-US`);
+
+    // console.log(data);
+
+    return 'dad'
   }
  
 })

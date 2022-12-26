@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="trailers" class="">
     <div v-if="pending">
       Loading ...
     </div>

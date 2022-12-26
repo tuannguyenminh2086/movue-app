@@ -4,7 +4,7 @@
       Loading ...
     </div>
     <div v-else>
-      <OrganismsMovie :movie="data" />
+      <OrganismsMovie v-bind="data" />
       <!-- related || suggestion-->
     </div>
   </div>
