@@ -30,8 +30,9 @@ const Data = z.object({
 
 export default defineEventHandler(async (event) => {
   const { apiKey, apiUrl } = useRuntimeConfig();
+  const {page} = getQuery(event)
   // api call with private key
-  const response = await $fetch(`${apiUrl}/trending/movie/week?api_key=${apiKey}&language=en-US`);
+  const response = await $fetch(`${apiUrl}/trending/movie/week?api_key=${apiKey}&page=${page}&language=en-US`);
   return Data.parse(response)
 
 })
