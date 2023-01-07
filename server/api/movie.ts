@@ -1,4 +1,4 @@
-import { z, infer } from 'zod';
+import { z } from 'zod';
 
 
 const Movie = z.object({
@@ -8,7 +8,7 @@ const Movie = z.object({
   id: z.number(),
   original_title: z.string(),
   overview: z.string(),
-  popularity: z.number(),
+  popularity: z.number().default(0),
   poster_path: z.string().nullable(),
   release_date: z.string(),
   revenue: z.number(),
@@ -29,29 +29,18 @@ const Movie = z.object({
       profile_path: z.string().nullable(),
       popularity: z.number(),
       order: z.number(),
-    })).nonempty()
+    })).nullable()
   })
 })
 
 
 export default defineEventHandler(async (event) => {
   const {id} = getQuery(event)  
+  const { apiKey, apiUrl } = useRuntimeConfig();
+  const data = await $fetch(`${apiUrl}/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=credits`);
+  
+  return Movie.parse(data)
 
-  if (!id) {
-    return 'not-found'
-  } else {
-    const { apiKey, apiUrl } = useRuntimeConfig();
-    const data = await $fetch(`${apiUrl}/movie/${id}?api_key=${apiKey}&language=en-US&append_to_response=credits`);
-
-    if (data) {
-      return Movie.parse(data)
-      // return data
-    } else {
-      return 'not-found'
-    }
-    
-  }
- 
 })
 
 
