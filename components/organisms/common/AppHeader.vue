@@ -1,5 +1,5 @@
 <template>
-  <header id="header" :class="[defaultClass, sticky ? 'bg-slate-200/50': 'bg-transparent']" ref="siteHeaderRef">
+  <header id="header" :class="[defaultClass, sticky ? 'bg-yellow-500/20': 'bg-transparent']" ref="siteHeaderRef">
     <div class="grid grid-cols-12 gap-4">
       <div class="col-span-full lg:col-span-4">
         <NuxtLink href="/"><AtomsBaseLogo /></NuxtLink>
