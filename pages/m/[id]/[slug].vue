@@ -20,9 +20,9 @@
   const { id } = useRoute().params;
   const { pending, data } = await useLazyFetch('/api/movie/', { query: { id: id} , transform: data => data })
 
-  if (!data.value) {
-    throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-  }
+  // if (!data.value) {
+  //   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+  // }
 
 </script>
 
