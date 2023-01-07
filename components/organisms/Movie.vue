@@ -16,20 +16,10 @@
       </div>
 
       <button type="button" class="cursor-pointer absolute block bottom-8 left-5 z-40 lg:left-10 xl:bottom-10 xl:left-24" @click="scrollTo">
-        <Icon name="mdi-light:arrow-down-circle" size="4rem" />
+        <Icon name="mdi-light:arrow-down-circle" size="3rem" />
       </button>
 
-      <div class="transition-colors hidden absolute rounded-lg bottom-8 right-5 z-40 px-8 py-3 border-2 bg-slate-100/10  lg:flex lg:items-center xl:bottom-10 xl:right-24">
-        
-        <div class="flex items-center">
-          <h3 class="font-bold text-4xl text-yellow-500">{{ (Math.round((vote_average! + Number.EPSILON) * 10) / 10) }} </h3>
-          <div class="ml-5 border-l-2 pl-5 relative">{{ vote_count  }} votes</div>
-        </div>
-        
-       
-      </div>
-
-
+      <AtomsBaseVote :point="vote_average" :count="vote_count" />
     </div>
 
     <div id="info" class="relative p-5 py-16 xl:py-32 xl:px-24" ref="detailRef">
@@ -111,7 +101,9 @@ const props = defineProps({
     type: Number,
     default: 0
   },
-  poster_path: String,
+  poster_path: {
+    type: null as unknown as PropType<String | null>,
+  },
   release_date: String,
   vote_average: Number,
   vote_count: Number,

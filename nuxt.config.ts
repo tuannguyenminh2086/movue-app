@@ -25,7 +25,7 @@ export default defineNuxtConfig({
         { children: 'Javascript is required' }
       ],
       bodyAttrs: {
-        class: 'bg-black text-white font-poppins subpixel-antialiased text-base tracking-wide scroll-smooth' // not apply!!
+        class: 'bg-black text-white font-poppins subpixel-antialiased text-base tracking-wide scroll-smooth'
       }
     },
     pageTransition: { name: 'page', mode: 'out-in' }
@@ -33,7 +33,15 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/tailwindcss',
     '@nuxt/image-edge',
-    'nuxt-icon'
+    'nuxt-icon',
+    ['@pinia/nuxt', {
+      autoImports: [
+        // automatically imports `defineStore`
+        'defineStore', // import { defineStore } from 'pinia'
+        // automatically imports `defineStore` as `definePiniaStore`
+        ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+      ],
+    },]
   ],
   runtimeConfig: {
     apiToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDBjMjY4ZWFiZmRjMWE2NjUyOGViN2VkMmExOTRhZCIsInN1YiI6IjVhODdmMWM4OTI1MTQxNzU5MzA0Y2RmNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ZyNNM_lBCIcUPyxLIdCunCaN8TPdZudssuM1o6lvKrU',

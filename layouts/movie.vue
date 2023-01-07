@@ -1,6 +1,5 @@
 <template>
-  <div class="text-base bg-black text-white font-poppins transition-all"> 
-    <!-- dark:bg-black dark:text-white -->
+  <div class="text-base bg-black text-white font-poppins transition-all">
     <OrganismsCommonAppHeader />
     <main id="main" class="">
       <slot />
