@@ -14,17 +14,18 @@ const siteHeaderRef = ref<HTMLDivElement | null>(null)
 const sticky = ref<Boolean>(false)
 const defaultClass = ref('p-5 w-full fixed top-0 left-0 z-50 xl:px-8 xl:py-8')
 
-nextTick(() => {
-  if (window){
-    window.addEventListener("scroll", () => {
-      if (document.documentElement.scrollTop >= 320) {
-        sticky.value = true
-      }
-      else {
-        sticky.value = false
-      }
-    })
-  }
+onMounted(() => {
+  if (process.client){
+  
+  window.addEventListener("scroll", () => {
+    if (document.documentElement.scrollTop >= 320) {
+      sticky.value = true
+    }
+    else {
+      sticky.value = false
+    }
+  })
+}
 })
 
 </script>
